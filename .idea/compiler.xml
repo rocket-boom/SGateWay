@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="server01" />
+        <module name="server02" />
+        <module name="SimpleGateWay" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="server01" target="1.5" />
+      <module name="server02" target="1.5" />
+      <module name="SimpleGateWay" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
