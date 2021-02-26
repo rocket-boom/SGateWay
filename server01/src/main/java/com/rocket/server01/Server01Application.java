@@ -15,6 +15,7 @@ public class Server01Application {
     }
     @RequestMapping("api/get")
     public String api(){
+        System.out.println("连接成功");
         return "server01";
     }
 }

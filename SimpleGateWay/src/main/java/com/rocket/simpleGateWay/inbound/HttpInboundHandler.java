@@ -3,6 +3,7 @@ package com.rocket.simpleGateWay.inbound;
 import com.rocket.simpleGateWay.filter.HeaderHttpRequestFilter;
 import com.rocket.simpleGateWay.filter.HttpRequestFilter;
 import com.rocket.simpleGateWay.outbound.HttpOutboundHandler;
+import com.rocket.simpleGateWay.outbound.NettyOutBoundHandler;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -21,16 +22,17 @@ public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
 
     private static Logger logger = LoggerFactory.getLogger(HttpInboundHandler.class);
     private final List<String> proxyServer;
-    private HttpOutboundHandler handler;
+    private NettyOutBoundHandler handler;
     private HttpRequestFilter filter = new HeaderHttpRequestFilter();
     public HttpInboundHandler(List<String> proxyServer){
         this.proxyServer = proxyServer;
-        this.handler = new HttpOutboundHandler(this.proxyServer);
+        this.handler = new NettyOutBoundHandler(this.proxyServer);
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         try {
+
             FullHttpRequest fullRequest = (FullHttpRequest) msg;
             handler.handle(fullRequest, ctx, filter);
         } catch(Exception e) {
